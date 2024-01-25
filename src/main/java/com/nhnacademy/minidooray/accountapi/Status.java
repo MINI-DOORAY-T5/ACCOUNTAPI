@@ -1,9 +1,9 @@
 package com.nhnacademy.minidooray.accountapi;
 
 public enum Status {
-    active("활성"),
+    active("가입"),
     dormant("휴먼"),
-    closed("종료");
+    closed("탈퇴");
 
     private final String statu;
 
