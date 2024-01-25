@@ -20,4 +20,15 @@ public class User {
     private String userEmail;
 
     private Status userStatus;
+
+    public User(String userId, String userPassword, String userEmail, Status userStatus) {
+        this.userId = userId;
+        this.userPassword = userPassword;
+        this.userEmail = userEmail;
+        this.userStatus = userStatus;
+    }
+
+    public String getUserStatusString() {
+        return userStatus.getStirng();
+    }
 }
