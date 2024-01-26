@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,15 +31,15 @@ public class UserController {
 
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Boolean> doLogin(@RequestBody @Valid LoginDto loginDto, BindingResult bindingResult) {
+    public ResponseEntity<User> doLogin(@RequestBody @Valid LoginDto loginDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new ValidationFailedException(bindingResult);
         }
         boolean loginSuccess = userService.matches(loginDto);
         if (loginSuccess) {
-            return ResponseEntity.status(HttpStatus.OK).body(true);
+            return ResponseEntity.ok().build();
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
+        return ResponseEntity.badRequest().build();
     }
 
     @PostMapping("/users")
@@ -55,5 +56,12 @@ public class UserController {
     public ResponseEntity<List<UserResponseDto>> getUser() {
         List<UserResponseDto> name = userService.getUser();
         return ResponseEntity.status(HttpStatus.OK).body(name);
+    }
+
+    @PostMapping("/users/status/{userId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<String> statusChange(@PathVariable("userId") String userId){
+        userService.changeStatus(userId);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -15,4 +15,6 @@ public interface UserService{
     User register(UserRequestDto userRequestDto);
 
     List<UserResponseDto> getUser();
+
+    void changeStatus(String userId);
 }

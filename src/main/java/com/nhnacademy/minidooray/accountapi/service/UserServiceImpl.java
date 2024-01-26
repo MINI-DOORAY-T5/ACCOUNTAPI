@@ -7,9 +7,9 @@ import com.nhnacademy.minidooray.accountapi.dto.UserResponseDto;
 import com.nhnacademy.minidooray.accountapi.entity.User;
 import com.nhnacademy.minidooray.accountapi.entity.User.UserStatus;
 import com.nhnacademy.minidooray.accountapi.exception.UserAlreadyExistException;
+import com.nhnacademy.minidooray.accountapi.exception.UserNotFoundException;
 import com.nhnacademy.minidooray.accountapi.repository.UserRepository;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,17 +38,26 @@ public class UserServiceImpl implements UserService {
         if (isUserExist) {
             throw new UserAlreadyExistException();
         }
-       return userRepository.save(new User(userRequestDto.getUserId(), userRequestDto.getUserPassword(), UserStatus.JOIN,
-                userRequestDto.getUserEmail()
-        ));
+        return userRepository.save(
+                new User(userRequestDto.getUserId(), userRequestDto.getUserPassword(), userRequestDto.getUserEmail(),
+                        UserStatus.JOIN
+                ));
 
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<UserResponseDto> getUser() {
-        List<User> users =  userRepository.findAll();
-        return users.stream().map(user -> new UserResponseDto(user.getUserId(), user.getEmail(), user.getUserStatus())).collect(
-                Collectors.toList());
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                .map(user -> new UserResponseDto(user.getUserId(), user.getUserEmail(), user.getUserStatus())).collect(
+                        Collectors.toList());
+    }
+
+    @Override
+    public void changeStatus(String userId) {
+        User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
+        userRepository.save(new User(userId, user.getUserPassword(), user.getUserEmail(), UserStatus.QUIT));
+
     }
 }

@@ -4,8 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -29,17 +27,17 @@ public class User {
     @Column(name = "user_password")
     private String userPassword;
 
+    @Column(name = "user_email")
+    private String userEmail;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "user_status")
     private UserStatus userStatus;
 
-    @Column(name = "user_email")
-    private String email;
-
-    public User(String userId, String userPassword, String email) {
+    public User(String userId, String userPassword, String userEmail) {
         this.userId = userId;
         this.userPassword = userPassword;
-        this.email = email;
+        this.userEmail = userEmail;
         this.userStatus = UserStatus.JOIN;
     }
 }
