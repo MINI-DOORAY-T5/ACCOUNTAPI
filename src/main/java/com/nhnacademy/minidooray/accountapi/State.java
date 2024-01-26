@@ -12,8 +12,7 @@ public enum State {
     }
 
     public String getStirng() {
-        return state;
+        return this.state;
     }
-
 
 }

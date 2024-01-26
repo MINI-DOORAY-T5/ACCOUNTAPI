@@ -45,7 +45,6 @@ public class User {
         this.userState = userState;
     }
 
-    //todo 회원가입은 id,email,password를 입력으로 생성
     public User(String id, String email, String pw) {
         this.userId = id;
         this.userEmail = email;
