@@ -9,5 +9,4 @@ public interface UserService {
     User createUser(User user);
     void deleteUser(String id);
 
-
 }

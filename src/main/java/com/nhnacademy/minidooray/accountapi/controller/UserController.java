@@ -3,6 +3,7 @@ package com.nhnacademy.minidooray.accountapi.controller;
 import com.nhnacademy.minidooray.accountapi.entity.User;
 import com.nhnacademy.minidooray.accountapi.service.UserService;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController {
 
-    private final UserService userService;
+    private UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
@@ -28,6 +29,7 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public User getUserById(@PathVariable String id) {
+
         return userService.getUser(id);
     }
 
@@ -43,7 +45,3 @@ public class UserController {
         return "{\"result\":\"OK\"}";
     }
 }
-
-// TODO 질문
-// 삭제가 필요한가?
-// 회원 수정이 필요한가?

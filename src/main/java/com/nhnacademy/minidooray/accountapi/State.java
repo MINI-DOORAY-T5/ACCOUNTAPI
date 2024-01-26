@@ -1,18 +1,12 @@
 package com.nhnacademy.minidooray.accountapi;
 
 public enum State {
-    active("가입"),
-    dormant("휴먼"),
-    closed("탈퇴");
+    active,
+    dormant,
+    closed;
 
-    private final String state;
-
-    private State(String state) {
-        this.state = state;
+    private State() {
     }
 
-    public String getStirng() {
-        return this.state;
-    }
 
 }
