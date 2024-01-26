@@ -44,8 +44,7 @@ public class User {
     }
 
     public UserDTO mapDTO() {
-        UserDTO dto = new UserDTO(userId,userPassword,userEmail,userState.toString());
-        return dto;
+        return new UserDTO(userId,userPassword,userEmail,userState.toString());
     }
 
 }

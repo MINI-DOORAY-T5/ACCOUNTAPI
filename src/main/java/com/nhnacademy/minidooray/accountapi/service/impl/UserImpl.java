@@ -1,4 +1,4 @@
-package com.nhnacademy.minidooray.accountapi.service.Impl;
+package com.nhnacademy.minidooray.accountapi.service.impl;
 
 import com.nhnacademy.minidooray.accountapi.dto.UserDTO;
 import com.nhnacademy.minidooray.accountapi.entity.User;
