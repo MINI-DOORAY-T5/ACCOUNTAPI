@@ -1,14 +1,13 @@
 package com.nhnacademy.minidooray.accountapi.service;
 
-import com.nhnacademy.minidooray.accountapi.domain.User;
+import com.nhnacademy.minidooray.accountapi.entity.User;
 import java.util.List;
-import org.springframework.scheduling.support.SimpleTriggerContext;
 
 public interface UserService {
 
     List<User> getUsers();
 
-    User cresateUser(User user);
+    User createUser(User user);
 
     User getUser(String id);
 

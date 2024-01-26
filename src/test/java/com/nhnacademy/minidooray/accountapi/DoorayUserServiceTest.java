@@ -1,6 +1,6 @@
 package com.nhnacademy.minidooray.accountapi;
 
-import com.nhnacademy.minidooray.accountapi.domain.User;
+import com.nhnacademy.minidooray.accountapi.entity.User;
 import com.nhnacademy.minidooray.accountapi.repository.UserRepository;
 import java.util.Optional;
 import org.assertj.core.api.Assertions;
@@ -16,7 +16,7 @@ public class DoorayUserServiceTest {
     @Test
     void testStudentRepository() {
         //given
-        User zbum = new User("1", "pw", "@", Status.active);
+        User zbum = new User("1", "pw", "@", State.active);
         userRepository.save(zbum);
         //when
         Optional<User> actual = userRepository.findById("1");

@@ -1,6 +1,6 @@
-package com.nhnacademy.minidooray.accountapi.domain;
+package com.nhnacademy.minidooray.accountapi.entity;
 
-import com.nhnacademy.minidooray.accountapi.Status;
+import com.nhnacademy.minidooray.accountapi.State;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -27,22 +27,22 @@ public class User {
     @Column(name = "user_email")
     private String userEmail;
 
-    @Column(name = "user_status")
+    @Column(name = "user_state")
     @Enumerated(EnumType.STRING)
-    private Status userStatus;
+    private State userState;
 
     public User() {
     }
 
-    public User(String userId, String userPassword, String userEmail, Status userStatus) {
+    public User(String userId, String userPassword, String userEmail, State userState) {
         this.userId = userId;
         this.userPassword = userPassword;
         this.userEmail = userEmail;
-        this.userStatus = userStatus;
+        this.userState = userState;
     }
 
     public String getUserStatusString() {
-        return userStatus.getStirng();
+        return userState.getStirng();
     }
 
     @Getter
@@ -51,13 +51,13 @@ public class User {
         private String id;
         private String pw;
         private String email;
-        private String statu;
+        private String state;
 
         public UserDTO(User user) {
             this.id = user.getUserId();
             this.pw = user.getUserPassword();
             this.email = user.getUserEmail();
-            this.statu = user.getUserStatusString();
+            this.state = user.getUserStatusString();
         }
     }
 }
