@@ -14,7 +14,7 @@ public class DoorayUserServiceTest {
     UserRepository userRepository;
 
     @Test
-    void testStudentRepository() {
+    void testUserRepository() {
         //given
         User zbum = new User("1", "pw", "@", State.active);
         userRepository.save(zbum);

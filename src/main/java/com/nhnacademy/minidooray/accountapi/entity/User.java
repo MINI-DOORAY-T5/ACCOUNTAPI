@@ -41,23 +41,17 @@ public class User {
         this.userState = userState;
     }
 
+    //todo 회원가입은 id,email,password를 입력으로 생성
+    public User(String id, String email, String pw) {
+        this.userId = id;
+        this.userEmail = email;
+        this.userPassword = pw;
+        this.userState = State.active;
+    }
+
     public String getUserStatusString() {
         return userState.getStirng();
     }
 
-    @Getter
-    @Setter
-    static class UserDTO {
-        private String id;
-        private String pw;
-        private String email;
-        private String state;
 
-        public UserDTO(User user) {
-            this.id = user.getUserId();
-            this.pw = user.getUserPassword();
-            this.email = user.getUserEmail();
-            this.state = user.getUserStatusString();
-        }
-    }
 }
