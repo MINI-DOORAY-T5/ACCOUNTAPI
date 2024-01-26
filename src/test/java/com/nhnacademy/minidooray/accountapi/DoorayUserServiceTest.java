@@ -24,4 +24,5 @@ public class DoorayUserServiceTest {
         Assertions.assertThat(actual).isPresent();
         Assertions.assertThat(actual.get()).isEqualTo(zbum);
     }
+
 }

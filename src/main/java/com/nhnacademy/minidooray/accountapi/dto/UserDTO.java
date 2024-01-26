@@ -1,5 +1,6 @@
 package com.nhnacademy.minidooray.accountapi.dto;
 
+import com.nhnacademy.minidooray.accountapi.State;
 import com.nhnacademy.minidooray.accountapi.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,4 +20,7 @@ public class UserDTO {
 
     private String state;
 
+    public User map() {
+        return new User(userId,password,email, State.valueOf(state));
+    }
 }

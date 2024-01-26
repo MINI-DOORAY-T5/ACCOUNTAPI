@@ -47,6 +47,14 @@ public class UserImpl implements UserService {
 
     @Override
     @Transactional
+    public User createUserDTO(UserDTO userDTO) {
+        boolean present = userRepository.findById(userDTO.getUserId()).isPresent();
+        if(present) throw new UserNotFoundException();
+        return userRepository.save(userDTO.map());
+    }
+
+    @Override
+    @Transactional
     public void deleteUser(String id) {
 
         userRepository.deleteById(id);
