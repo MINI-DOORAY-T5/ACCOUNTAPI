@@ -5,8 +5,4 @@ public enum State {
     dormant,
     closed;
 
-    private State() {
-    }
-
-
 }

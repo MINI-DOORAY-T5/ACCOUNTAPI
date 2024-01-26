@@ -1,5 +1,6 @@
 package com.nhnacademy.minidooray.accountapi.service.Impl;
 
+import com.nhnacademy.minidooray.accountapi.dto.UserDTO;
 import com.nhnacademy.minidooray.accountapi.entity.User;
 import com.nhnacademy.minidooray.accountapi.exception.UserNotFoundException;
 import com.nhnacademy.minidooray.accountapi.repository.UserRepository;
@@ -9,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
+@Service("userService")
 public class UserImpl implements UserService {
 
     @Autowired
@@ -25,8 +26,13 @@ public class UserImpl implements UserService {
 
     @Override
     @Transactional(readOnly = true)
-    public User getUser(String id) {
+    public UserDTO getUserDTO(String id) {
+        return userRepository.findById(id).orElseThrow().mapDTO();
+    }
 
+    @Override
+    @Transactional(readOnly = true)
+    public User getUser(String id) {
         return userRepository.findById(id).orElseThrow();
     }
 

@@ -44,4 +44,5 @@ public class UserController {
         userService.deleteUser(id);
         return "{\"result\":\"OK\"}";
     }
+
 }

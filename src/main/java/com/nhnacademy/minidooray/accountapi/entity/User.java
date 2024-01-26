@@ -11,10 +11,12 @@ import javax.persistence.Table;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @EqualsAndHashCode
 @Entity
 @Table(name = "user")
@@ -41,25 +43,9 @@ public class User {
         this.userState = userState;
     }
 
-
-    public User(String id, String email, String pw) {
-        this.userId = id;
-        this.userEmail = email;
-        this.userPassword = pw;
-        this.userState = State.active;
+    public UserDTO mapDTO() {
+        UserDTO dto = new UserDTO(userId,userPassword,userEmail,userState.toString());
+        return dto;
     }
-
-    //DTO를 user로
-    public User(UserDTO userDTO) {
-        this.userId = userDTO.getId();
-        this.userEmail = userDTO.getEmail();
-        this.userPassword = userDTO.getPassword();
-        this.userState = State.valueOf(userDTO.toString());
-    }
-
-    public User() {
-
-    }
-
 
 }
