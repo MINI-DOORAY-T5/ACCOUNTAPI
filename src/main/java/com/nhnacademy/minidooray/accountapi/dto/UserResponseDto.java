@@ -1,6 +1,6 @@
 package com.nhnacademy.minidooray.accountapi.dto;
 
-import com.nhnacademy.minidooray.accountapi.entity.User.UserStatus;
+import com.nhnacademy.minidooray.accountapi.entity.User.UserState;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -15,6 +15,5 @@ public class UserResponseDto {
     private String userId;
     @Email
     private String userEmail;
-    private UserStatus status;
-
+    private UserState userState;
 }

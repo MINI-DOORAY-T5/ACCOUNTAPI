@@ -6,7 +6,6 @@ import com.nhnacademy.minidooray.accountapi.dto.UserRequestDto;
 import com.nhnacademy.minidooray.accountapi.dto.UserResponseDto;
 import com.nhnacademy.minidooray.accountapi.entity.User;
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService{
 
@@ -16,5 +15,5 @@ public interface UserService{
 
     List<UserResponseDto> getUser();
 
-    void changeStatus(String userId);
+    void chageState(String userId);
 }

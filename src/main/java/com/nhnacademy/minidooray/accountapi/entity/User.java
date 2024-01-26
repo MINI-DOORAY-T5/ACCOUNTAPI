@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 public class User {
-    public enum UserStatus {
+    public enum UserState {
         JOIN, QUIT, DORMANCY
     }
 
@@ -31,13 +31,13 @@ public class User {
     private String userEmail;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "user_status")
-    private UserStatus userStatus;
+    @Column(name = "user_state")
+    private UserState userState;
 
     public User(String userId, String userPassword, String userEmail) {
         this.userId = userId;
         this.userPassword = userPassword;
         this.userEmail = userEmail;
-        this.userStatus = UserStatus.JOIN;
+        this.userState = UserState.JOIN;
     }
 }

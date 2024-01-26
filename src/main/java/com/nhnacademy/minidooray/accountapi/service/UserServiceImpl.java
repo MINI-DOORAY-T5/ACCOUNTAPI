@@ -5,7 +5,7 @@ import com.nhnacademy.minidooray.accountapi.dto.LoginDto;
 import com.nhnacademy.minidooray.accountapi.dto.UserRequestDto;
 import com.nhnacademy.minidooray.accountapi.dto.UserResponseDto;
 import com.nhnacademy.minidooray.accountapi.entity.User;
-import com.nhnacademy.minidooray.accountapi.entity.User.UserStatus;
+import com.nhnacademy.minidooray.accountapi.entity.User.UserState;
 import com.nhnacademy.minidooray.accountapi.exception.UserAlreadyExistException;
 import com.nhnacademy.minidooray.accountapi.exception.UserNotFoundException;
 import com.nhnacademy.minidooray.accountapi.repository.UserRepository;
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
         }
         return userRepository.save(
                 new User(userRequestDto.getUserId(), userRequestDto.getUserPassword(), userRequestDto.getUserEmail(),
-                        UserStatus.JOIN
+                        UserState.JOIN
                 ));
 
     }
@@ -50,14 +50,14 @@ public class UserServiceImpl implements UserService {
     public List<UserResponseDto> getUser() {
         List<User> users = userRepository.findAll();
         return users.stream()
-                .map(user -> new UserResponseDto(user.getUserId(), user.getUserEmail(), user.getUserStatus())).collect(
+                .map(user -> new UserResponseDto(user.getUserId(), user.getUserEmail(), user.getUserState())).collect(
                         Collectors.toList());
     }
 
     @Override
-    public void changeStatus(String userId) {
+    public void chageState(String userId) {
         User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
-        userRepository.save(new User(userId, user.getUserPassword(), user.getUserEmail(), UserStatus.QUIT));
+        userRepository.save(new User(userId, user.getUserPassword(), user.getUserEmail(), UserState.QUIT));
 
     }
 }
