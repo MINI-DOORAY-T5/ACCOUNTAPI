@@ -1,6 +1,7 @@
 package com.nhnacademy.minidooray.accountapi.entity;
 
 import com.nhnacademy.minidooray.accountapi.State;
+import com.sun.istack.NotNull;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -21,12 +22,15 @@ public class User {
     @Column(name = "user_id")
     private String userId;
 
+    @NotNull
     @Column(name = "user_password")
     private String userPassword;
 
+    @NotNull
     @Column(name = "user_email")
     private String userEmail;
 
+    @NotNull
     @Column(name = "user_state")
     @Enumerated(EnumType.STRING)
     private State userState;
