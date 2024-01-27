@@ -10,7 +10,9 @@ import com.nhnacademy.minidooray.accountapi.exception.UserAlreadyExistException;
 import com.nhnacademy.minidooray.accountapi.exception.UserNotFoundException;
 import com.nhnacademy.minidooray.accountapi.repository.UserRepository;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+import javax.swing.text.html.Option;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,5 +61,11 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         userRepository.save(new User(userId, user.getUserPassword(), user.getUserEmail(), UserState.QUIT));
 
+    }
+
+    @Override
+    public boolean isUserJoinState(String userId) {
+        Optional<User> user = userRepository.findById(userId);
+        return user.filter(value -> UserState.JOIN.equals(value.getUserState())).isPresent();
     }
 }

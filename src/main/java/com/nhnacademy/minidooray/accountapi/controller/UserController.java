@@ -29,15 +29,12 @@ public class UserController {
 
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<User> doLogin(@RequestBody @Valid LoginDto loginDto, BindingResult bindingResult) {
+    public ResponseEntity<Boolean> doLogin(@RequestBody @Valid LoginDto loginDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             throw new ValidationFailedException(bindingResult);
         }
         boolean loginSuccess = userService.matches(loginDto);
-        if (loginSuccess) {
-            return ResponseEntity.ok().build();
-        }
-        return ResponseEntity.badRequest().build();
+        return ResponseEntity.ok(loginSuccess);
     }
 
     @PostMapping("/users")
@@ -61,5 +58,12 @@ public class UserController {
     public ResponseEntity<String> stateChange(@PathVariable("userId") String userId){
         userService.chageState(userId);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/users/checkstate/{userId}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Boolean> isUserJoinState(@PathVariable("userId") String userId){
+        boolean isJoin = userService.isUserJoinState(userId);
+        return ResponseEntity.ok(isJoin);
     }
 }

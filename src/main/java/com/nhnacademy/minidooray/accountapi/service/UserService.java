@@ -16,4 +16,6 @@ public interface UserService{
     List<UserResponseDto> getUser();
 
     void chageState(String userId);
+
+    boolean isUserJoinState(String userId);
 }
