@@ -2,6 +2,7 @@ package com.nhnacademy.minidooray.accountapi.service;
 
 
 import com.nhnacademy.minidooray.accountapi.dto.LoginDto;
+import com.nhnacademy.minidooray.accountapi.dto.UserIdOnly;
 import com.nhnacademy.minidooray.accountapi.dto.UserRequestDto;
 import com.nhnacademy.minidooray.accountapi.dto.UserResponseDto;
 import com.nhnacademy.minidooray.accountapi.entity.User;
@@ -48,15 +49,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public List<UserResponseDto> getUser() {
-        List<User> users = userRepository.findAll();
-        return users.stream()
-                .map(user -> new UserResponseDto(user.getUserId(), user.getUserEmail(), user.getUserState())).collect(
-                        Collectors.toList());
-    }
-
-    @Override
+    @Transactional
     public void chageState(String userId) {
         User user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
         userRepository.save(new User(userId, user.getUserPassword(), user.getUserEmail(), UserState.QUIT));
@@ -64,8 +57,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public boolean isUserJoinState(String userId) {
         Optional<User> user = userRepository.findById(userId);
         return user.filter(value -> UserState.JOIN.equals(value.getUserState())).isPresent();
+    }
+
+    @Override
+    public List<UserIdOnly> findUserNameOnlyAll() {
+        return userRepository.findUserNameOnlyAll();
     }
 }

@@ -2,6 +2,7 @@ package com.nhnacademy.minidooray.accountapi.service;
 
 
 import com.nhnacademy.minidooray.accountapi.dto.LoginDto;
+import com.nhnacademy.minidooray.accountapi.dto.UserIdOnly;
 import com.nhnacademy.minidooray.accountapi.dto.UserRequestDto;
 import com.nhnacademy.minidooray.accountapi.dto.UserResponseDto;
 import com.nhnacademy.minidooray.accountapi.entity.User;
@@ -13,9 +14,10 @@ public interface UserService{
 
     User register(UserRequestDto userRequestDto);
 
-    List<UserResponseDto> getUser();
 
     void chageState(String userId);
 
     boolean isUserJoinState(String userId);
+
+    List<UserIdOnly> findUserNameOnlyAll();
 }

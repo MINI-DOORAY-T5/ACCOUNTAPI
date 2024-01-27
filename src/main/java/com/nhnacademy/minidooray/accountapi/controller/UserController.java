@@ -2,6 +2,7 @@ package com.nhnacademy.minidooray.accountapi.controller;
 
 
 import com.nhnacademy.minidooray.accountapi.dto.LoginDto;
+import com.nhnacademy.minidooray.accountapi.dto.UserIdOnly;
 import com.nhnacademy.minidooray.accountapi.dto.UserRequestDto;
 import com.nhnacademy.minidooray.accountapi.dto.UserResponseDto;
 import com.nhnacademy.minidooray.accountapi.entity.User;
@@ -48,8 +49,8 @@ public class UserController {
 
     @GetMapping("/users/list")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<UserResponseDto>> getUser() {
-        List<UserResponseDto> name = userService.getUser();
+    public ResponseEntity<List<UserIdOnly>> getUser() {
+        List<UserIdOnly> name = userService.findUserNameOnlyAll();
         return ResponseEntity.status(HttpStatus.OK).body(name);
     }
 
