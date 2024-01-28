@@ -15,7 +15,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class UserRepositoryTest {
+class UserRepositoryTest {
 
     @Mock
     private UserRepository userRepository;
@@ -34,7 +34,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void testExistsByUserIdAndUserPasswordLike() {
+    void testExistsByUserIdAndUserPasswordLike() {
         boolean exists = userRepository.existsByUserIdAndUserPasswordLike("user1", "password1");
         assertThat(exists).isTrue();
 
@@ -43,7 +43,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    public void testFindUserNameOnlyAll() {
+    void testFindUserNameOnlyAll() {
         List<UserIdOnly> users = userRepository.findUserNameOnlyAll();
         assertThat(users).hasSize(1);
         assertThat(users.get(0).getUserId()).isEqualTo("user1");

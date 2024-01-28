@@ -1,7 +1,6 @@
 package com.nhnacademy.minidooray.accountapi.controller;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
@@ -48,7 +47,8 @@ public class UserControllerTest {
     @Test
     public void testCreateUser() throws Exception {
         UserRequestDto userRequestDto = new UserRequestDto("user", "password", "email@example.com");
-        when(userService.register(any(UserRequestDto.class))).thenReturn(new User("user", "password", "email@example.com", User.UserState.JOIN));
+        when(userService.register(any(UserRequestDto.class))).thenReturn(
+                new User("user", "password", "email@example.com", User.UserState.JOIN));
 
         mockMvc.perform(post("/users")
                         .contentType(MediaType.APPLICATION_JSON)
