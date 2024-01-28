@@ -36,10 +36,4 @@ public class User {
     @Column(name = "user_state")
     private UserState userState;
 
-    public User(String userId, String userPassword, String userEmail) {
-        this.userId = userId;
-        this.userPassword = userPassword;
-        this.userEmail = userEmail;
-        this.userState = UserState.JOIN;
-    }
 }
